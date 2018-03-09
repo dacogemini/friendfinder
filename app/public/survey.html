@@ -35,89 +35,104 @@
                 <label class="custom-file-label" for="customFile">Upload a picture</label>
               </div>
         <hr>
+        <h1 style="font-family: 'Anton', sans-serif;">QUESTIONS:</h1>
+        <h2 style="font-family: 'Abel', sans-serif;">Please rate the following statements:</h2>
     <div id="surveyElement"></div>
     <div id="surveyResult"></div>
     <div class="container">
-            <h1 style="font-family: 'Anton', sans-serif;">QUESTIONS:</h1>
-    <div id="surveyContainer"></div>
-        <script>
-            Survey.Survey.cssType = "bootstrap";
-            var surveyJSON = {
-                pages: [{
-                    name: "page1",
-                    elements: [{
-                        type: "checkbox",
-                        name: "How clean is your bathroom right now?",
-                        choices: ["Filthy", "Meh - could be better", "Spotless"]
-                    }, {
-                        type: "checkbox",
-                        name: "How important is money to you?",
-                        choices: ["Everything - can't live without it",
-                            "Somewhat - there are other things more important", "Not at all"
-                        ]
-                    }, {
-                        type: "checkbox",
-                        name: "How would you best describe your character?",
-                        choices: ["Shy",
-                            "Expressive", "Humerous", "Uncomplicated"
-                        ]
-                    }, {
-                        type: "checkbox",
-                        name: "What are the most important characteristics in a partner?",
-                        choices: ["Good Looks",
-                            "Smart", "Trust Worthy", "Passionate"
-                        ]
-                    },  {
-                        type: "checkbox",
-                        name: "Could you date a smoker?",
-                        choices: ["Yes",
-                            "No", "Depends what they smoke"
-                        ]
-                    }, {
-                        type: "checkbox",
-                        name: "Perfect Vacation",
-                        choices: ["Beach",
-                            "History", "Entertainment", "Outdoors"
-                        ]
-                    }, {
-                        type: "checkbox",
-                        name: "What is your favorite season?",
-                        choices: ["Spring",
-                            "Summer", "Fall", "Winter"
-                        ]
-                    },  {
-                        type: "checkbox",
-                        name: "What is your favorite music?",
-                        choices: ["Heavy Metal",
-                            "Jazz", "Hip-Hop", "Pop", "Country"
-                        ]
-                    }, {
-                        type: "checkbox",
-                        name: "Complete this sentence: “I wish I had someone with whom I could share …",
-                        choices: ["My life",
-                            "An ice-cream cone", "A motorcycle ride", "A walk on the beach", "Nothing, I am selfish"
-                        ]
-                    },
-                        {
-                        type: "checkbox",
-                        name: "What is your idea of a good night out?",
-                        choices: ["Theater or Opera", "Romantic Dinner", "Concert",
-                            "Karaoke at the local pub"
-                        ]
-                    }]
-                }]
-            }
             
-            function sendDataToServer(friends) {
-                //send Ajax request to your web server.
-                alert("The results are:" + JSON.stringify(friends.data));
-            }
+    <div id="surveyContainer"></div>
+     <script>
+    Survey
+    .StylesManager
+    .applyTheme("default");
 
-            var survey = new Survey.Model(surveyJSON);
-            $("#surveyContainer").Survey({
-                model: survey,
-                onComplete: sendDataToServer
-            });
+var json = {
+    questions: [
+        {
+            type: "rating",
+            name: "blind",
+            title: "Love is blind.",
+            minRateDescription: "Stongly Agree",
+            maxRateDescription: "Strongly Disagree"
+        },
+        {
+            type: "rating",
+            name: "absence",
+            title: "Absence makes the heart grow fonder.",
+            minRateDescription: "Stongly Agree",
+            maxRateDescription: "Strongly Disagree"
+        },
+        {
+            type: "rating",
+            name: "away",
+            title: "Love isn't love until you give it away.",
+            minRateDescription: "Stongly Agree",
+            maxRateDescription: "Strongly Disagree"
+        },
+        {
+            type: "rating",
+            name: "blind",
+            title: "Love is blind.",
+            minRateDescription: "Stongly Agree",
+            maxRateDescription: "Strongly Disagree"
+        },
+        {
+            type: "rating",
+            name: "parting",
+            title: "Parting is such sweet sorrow.",
+            minRateDescription: "Stongly Agree",
+            maxRateDescription: "Strongly Disagree"
+        },
+        {
+            type: "rating",
+            name: "find",
+            title: "Love isn't something you find. Love is something that finds you. ",
+            minRateDescription: "Stongly Agree",
+            maxRateDescription: "Strongly Disagree"
+        },
+        {
+            type: "rating",
+            name: "away",
+            title: "Love isn't love until you give it away.",
+            minRateDescription: "Stongly Agree",
+            maxRateDescription: "Strongly Disagree"
+        },
+        {
+            type: "rating",
+            name: "blind",
+            title: "Love is blind.",
+            minRateDescription: "Stongly Agree",
+            maxRateDescription: "Strongly Disagree"
+        },
+        {
+            type: "rating",
+            name: "parting",
+            title: "Parting is such sweet sorrow.",
+            minRateDescription: "Stongly Agree",
+            maxRateDescription: "Strongly Disagree"
+        },
+        {
+            type: "rating",
+            name: "find",
+            title: "Love isn't something you find. Love is something that finds you. ",
+            minRateDescription: "Stongly Agree",
+            maxRateDescription: "Strongly Disagree"
+        }
+    ]
+};
+
+window.survey = new Survey.Model(json);
+
+survey
+    .onComplete
+    .add(function (result) {
+        document
+            .querySelector('#surveyResult')
+            .innerHTML = "result: " + JSON.stringify(result.data);
+    });
+
+$("#surveyElement").Survey({model: survey});
         </script>
 
 
